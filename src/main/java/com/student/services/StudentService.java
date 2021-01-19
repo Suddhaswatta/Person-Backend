@@ -1,6 +1,5 @@
 package com.student.services;
 
-import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
@@ -13,11 +12,11 @@ public interface StudentService {
 	
 	Student getById(String id);
 	
-	Student save(Student person);
+	Student save(Student student);
 	
 	boolean delete(String id);
 	
-	Iterable<Student> filter(String id,String firstname,String lastname,String age,Date dob);
+	Iterable<Student> filter(Student student);
 	
 
 }

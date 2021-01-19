@@ -25,36 +25,42 @@ public class StudentController {
 	ResponseEntity<?> getAll() {
 
 		Iterable<Student> students = service.getAll();
-
 		return new ResponseEntity<>(students, HttpStatus.OK);
 
 	}
-	
+
 	@GetMapping("/students/{id}")
-	ResponseEntity<?> getById(@PathVariable String id){
-		
+	ResponseEntity<?> getById(@PathVariable String id) {
+
 		Student student = service.getById(id);
-		
-		return new ResponseEntity<>(student,HttpStatus.OK);
-		
+
+		return new ResponseEntity<>(student, HttpStatus.OK);
+
 	}
-	
+
 	@PostMapping("/students")
-	ResponseEntity<?> save(@RequestBody Student student){
-		
+	ResponseEntity<?> save(@RequestBody Student student) {
+
 		Student saved = service.save(student);
-		
-		return new ResponseEntity<>(saved,HttpStatus.CREATED);
-		
+
+		return new ResponseEntity<>(saved, HttpStatus.CREATED);
+
 	}
 
 	@DeleteMapping("/delete/{id}")
-	ResponseEntity<?> save(@PathVariable String id){
-		
+	ResponseEntity<?> save(@PathVariable String id) {
+
 		boolean yes = service.delete(id);
-		
-		return new ResponseEntity<>(yes,HttpStatus.NO_CONTENT);
-		
+
+		return new ResponseEntity<>(yes, HttpStatus.NO_CONTENT);
+
+	}
+
+	@PostMapping("/filter")
+	ResponseEntity<?> filter(@RequestBody Student student) {
+
+		Iterable<Student> students = service.filter(student);
+		return new ResponseEntity<>(students, HttpStatus.OK);
 	}
 
 }
