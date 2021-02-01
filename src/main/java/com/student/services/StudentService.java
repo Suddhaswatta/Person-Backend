@@ -1,9 +1,12 @@
 package com.student.services;
 
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.student.domains.Student;
+import com.student.models.FilterRequest;
 
 @Service
 public interface StudentService {
@@ -16,7 +19,9 @@ public interface StudentService {
 	
 	boolean delete(String id);
 	
-	Iterable<Student> filter(Student student);
+	Iterable<Student> filter(FilterRequest filterRequest);
+	
+	Map options();
 	
 
 }

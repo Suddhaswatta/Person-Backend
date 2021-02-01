@@ -1,5 +1,7 @@
 package com.student.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student.domains.Student;
+import com.student.models.FilterRequest;
 import com.student.services.StudentService;
 
 @RestController
@@ -57,10 +60,17 @@ public class StudentController {
 	}
 
 	@PostMapping("/filter")
-	ResponseEntity<?> filter(@RequestBody Student student) {
+	ResponseEntity<?> filter(@RequestBody FilterRequest filterRequest) {
 
-		Iterable<Student> students = service.filter(student);
+		Iterable<Student> students = service.filter(filterRequest);
 		return new ResponseEntity<>(students, HttpStatus.OK);
+	}
+
+	@GetMapping("/options")
+	ResponseEntity<?> options() {
+
+		Map options = service.options();
+		return new ResponseEntity<>(options, HttpStatus.OK);
 	}
 
 }
